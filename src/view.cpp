@@ -1,7 +1,9 @@
 #include "view.h"
 #include "vm_helper.h"
+#include "global.h"
 #include <QLabel>
 #include <QLineEdit>
+#include <QPushButton>
 
 View::View(QWidget *parent)
     : QWidget(parent)
@@ -23,6 +25,10 @@ void View::init()
         return edit;
     };
 
+    auto resetButton = new QPushButton(this);
+    resetButton->setText("Reset");
+    resetButton->setGeometry(350, 190, 80, 20);
+
     m_list.clear();
     auto i = 0;
     m_list << func("Name :", ++i);
@@ -31,29 +37,31 @@ void View::init()
 
     // update view
     auto vm = VMHelper::getInstance()->getVM();
-    m_list.at(0)->setText(vm->property("name").toString());
-    m_list.at(1)->setText(vm->property("sex").toString());
-    m_list.at(2)->setText(vm->property("age").toString());
+    m_list.at(0)->setText(vm->property(NAME_STRING).toString());
+    m_list.at(1)->setText(vm->property(SEX_STRING).toString());
+    m_list.at(2)->setText(vm->property(AGE_STRING).toString());
 
     // bind func to update model
-    connect(m_list.at(0), &QLineEdit::returnPressed, this, [&]() {
+    connect(m_list.at(0), &QLineEdit::textChanged, this, [&]() {
         emit this->changeName(m_list.at(0)->text());
     });
-    connect(m_list.at(1), &QLineEdit::returnPressed, this, [&]() {
+    connect(m_list.at(1), &QLineEdit::textChanged, this, [&]() {
         emit this->changeSex(m_list.at(1)->text());
     });
-    connect(m_list.at(2), &QLineEdit::returnPressed, this, [&]() {
+    connect(m_list.at(2), &QLineEdit::textChanged, this, [&]() {
         emit this->changeAge(m_list.at(2)->text().toInt());
     });
+    connect(resetButton, &QPushButton::clicked, this, &View::reset);
+
     setMinimumSize(800, 480);
 }
 
 void View::refresh()
 {
     auto vm = VMHelper::getInstance()->getVM();
-    m_list.at(0)->setText(vm->property("name").toString());
-    m_list.at(1)->setText(vm->property("sex").toString());
-    m_list.at(2)->setText(vm->property("age").toString());
+    m_list.at(0)->setText(vm->property(NAME_STRING).toString());
+    m_list.at(1)->setText(vm->property(SEX_STRING).toString());
+    m_list.at(2)->setText(vm->property(AGE_STRING).toString());
 }
 
 void View::onUpdateName(const QString &name)

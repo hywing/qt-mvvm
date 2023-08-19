@@ -31,6 +31,7 @@ signals:
     void changeName(const QString &name);
     void changeSex(const QString &sex);
     void changeAge(int age);
+    void reset();
 
 private:
     QLineEdit *m_name;

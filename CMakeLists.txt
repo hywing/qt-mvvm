@@ -15,13 +15,13 @@ find_package(Qt5 COMPONENTS Widgets REQUIRED)
 
 
 add_executable(qt-mvvm
-    main.cpp
-    view.cpp
-    model.cpp
-    view_model.cpp
-    vm_helper.cpp
-    app_manager.cpp
-    config.cpp
+    src/main.cpp
+    src/view.cpp
+    src/model.cpp
+    src/view_model.cpp
+    src/vm_helper.cpp
+    src/app_manager.cpp
+    src/config.cpp
 )
 
 target_link_libraries(qt-mvvm PRIVATE Qt5::Widgets)

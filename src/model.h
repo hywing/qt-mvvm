@@ -19,6 +19,8 @@ public:
     void reset() override;
 
 public slots:
+    void onReset();
+
     void onChangeName(const QString &name);
 
     void onChangeSex(const QString &sex);

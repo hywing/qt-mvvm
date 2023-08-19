@@ -31,6 +31,7 @@ void ViewModel::bind()
     connect(view, &View::changeName, model, &Model::onChangeName);
     connect(view, &View::changeSex, model, &Model::onChangeSex);
     connect(view, &View::changeAge, model, &Model::onChangeAge);
+    connect(view, &View::reset, model, &Model::onReset);
 
     // model to view
     connect(model, &Model::updateName, view, &View::onUpdateName);

@@ -4,6 +4,8 @@
 #include <QObject>
 #include <QVariantMap>
 
+#include "global.h"
+
 class Config : public QObject
 {
     Q_OBJECT
@@ -15,7 +17,8 @@ public:
     void reset();
 
 private:
-    QVariantMap m_map;
+    QVariantMap data;
+    friend class Model;
 };
 
 #endif // CONFIG_H

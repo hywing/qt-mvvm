@@ -1,6 +1,6 @@
 # qt-mvvm
 
-This `mvvm` structure is helpful for extracting the ui model from your application when there are a lot of modules in your code project, then you can have distinct `view` and `model`, remember it is only a methodology and not suitable for every situation. 
+This `mvvm` structure is helpful for extracting the ui model from your application when there are a lot of modules in your code project, then you can have distinct `view` and `model` not the mix of them, remember it is only a methodology and not suitable for every situation. 
 
 ## View
 
@@ -22,8 +22,9 @@ Model stands for the ui model, such as
 
 ViewModel has some functionalities, like
 
-- init view with property
-- init model when app starts
+- init Model when app starts
 
-- bind func to connect View and Model
+- init View with property
+
+- bind func to connect Model and View 
 
